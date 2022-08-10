@@ -29,10 +29,10 @@ namespace LogicaNegocios
         }
 
 
-        //Metodo Ver Usuario 
-        public DataTable Usuario(ref string msj)
+        //Metodo Ver Material 
+        public DataTable VerMaterial(ref string msj)
         {
-            string query = "SELECT * FROM usuarios;";
+            string query = "SELECT M.Descripcion_Mat, M.Marca, M.Presentacion, T.Tipo From Material M, TipoMaterial T WHERE M.ID_Tipo=T.ID_Tipo";
             DataTable salida = null;
             DataSet ds = null;
             List<SqlParameter> listaP = new List<SqlParameter>();
@@ -44,14 +44,42 @@ namespace LogicaNegocios
             return salida;
         }
 
-        //Metodo Insertar 
+        public DataTable VerObra(ref string msj)
+        {
+            string query = " SELECT M.Nom_Obra, M.Direccion, M.Fecha_Inicio, M.Fecha_Termino From Obra M";
+            DataTable salida = null;
+            DataSet ds = null;
+            List<SqlParameter> listaP = new List<SqlParameter>();
+            ds = acceso.ConsultaDS(query, acceso.AbrirConexion(ref msj), ref msj, listaP);
+            if (ds != null) //Si el DataSet no esta vacio
+            {
+                salida = ds.Tables[0]; //Obtiene las tablas del DataSet
+            }
+            return salida;
+        }
 
-        public Boolean InsertarUsuarios(int id, string nom, string col, int num, int cpo, string nct, string tel)
+        public DataTable VerProvee(ref string msj)
+        {
+            string query = " SELECT M.Recibio, M.Entrega, M.Cantidad, M.Fecha_Entre, M.Precio From Provee_De_Materi_Obra M";
+            DataTable salida = null;
+            DataSet ds = null;
+            List<SqlParameter> listaP = new List<SqlParameter>();
+            ds = acceso.ConsultaDS(query, acceso.AbrirConexion(ref msj), ref msj, listaP);
+            if (ds != null) //Si el DataSet no esta vacio
+            {
+                salida = ds.Tables[0]; //Obtiene las tablas del DataSet
+            }
+            return salida;
+        }
+
+        //Metodo Insertar TABLA MATERIAL
+
+        public Boolean InsertarMaterial(int id, string descri, string marc, string presen, int idTip)
         {
             Boolean salida = false;
             string msj = "";
-            string query = "INSERT INTO usuarios (id_usuario, nombre, colonia, numero, cp, nom_centroTrabajo, telefono)" +
-                           "VALUES (@id, @nom, @col, @num, @cpo, @nct, @tel);";
+            string query = "INSERT INTO usuarios (ID_Material, Descripcion_Mat, Presentacion, ID_Tipo )" +
+                           "VALUES (@id, @descri, @marc, @presen, @idTip);";
             List<SqlParameter> listaP = new List<SqlParameter>();
 
             listaP.Add(new SqlParameter()
@@ -63,44 +91,30 @@ namespace LogicaNegocios
 
             listaP.Add(new SqlParameter()
             {
-                ParameterName = "nom",
+                ParameterName = "descri",
                 SqlDbType = SqlDbType.VarChar,
-                Value = nom,
+                Value = descri,
             });
 
             listaP.Add(new SqlParameter()
             {
-                ParameterName = "col",
+                ParameterName = "marc",
                 SqlDbType = SqlDbType.VarChar,
-                Value = col,
+                Value = marc,
             });
 
             listaP.Add(new SqlParameter()
             {
-                ParameterName = "num",
+                ParameterName = "presen",
+                SqlDbType = SqlDbType.VarChar,
+                Value = presen,
+            });
+
+            listaP.Add(new SqlParameter()
+            {
+                ParameterName = "idTipo",
                 SqlDbType = SqlDbType.Int,
-                Value = num,
-            });
-
-            listaP.Add(new SqlParameter()
-            {
-                ParameterName = "cpo",
-                SqlDbType = SqlDbType.Int,
-                Value = cpo,
-            });
-
-            listaP.Add(new SqlParameter()
-            {
-                ParameterName = "nct",
-                SqlDbType = SqlDbType.VarChar,
-                Value = nct,
-            });
-
-            listaP.Add(new SqlParameter()
-            {
-                ParameterName = "tel",
-                SqlDbType = SqlDbType.VarChar,
-                Value = tel,
+                Value = idTip,
             });
 
        
@@ -108,70 +122,70 @@ namespace LogicaNegocios
             return salida;
         }
 
-        //Metodo Modificar 
+        //Metodo Modificar Proveedor
 
-        public void ModificarUsuario(string id, string nom, string col, int num, int cpo, string nct, string tel)
+        public void ModificarUsuario( string recibi, string entre, int cant, string feEn, int pre, int idO, int idM)
         {
-            string query = "UPDATE usuarios SET nombre= @nom, colonia=@col, numero=@num, cp=@cpo, nom_centroTrabajo=@nct, telefono=@tel where id_usuario = @id";
+            string query = "UPDATE Provee_De_Materi_Obra SET Recibio= @recibi, Entrega=@entre, Cantidad=@cant, Fecha_Entre=@feEn, Precio=@pre, ID_Obra=@idO, ID_Material=@idM where Recibio = @recibi";
             string msj = "";
             List<SqlParameter> listaP = new List<SqlParameter>();
 
             listaP.Add(new SqlParameter()
             {
-                ParameterName = "nom",
+                ParameterName = "recibi",
                 SqlDbType = SqlDbType.VarChar,
-                Value = nom,
+                Value = recibi,
             });
 
             listaP.Add(new SqlParameter()
             {
-                ParameterName = "col",
+                ParameterName = "entre",
                 SqlDbType = SqlDbType.VarChar,
-                Value = col,
+                Value = entre,
             });
 
             listaP.Add(new SqlParameter()
             {
-                ParameterName = "num",
+                ParameterName = "cant",
                 SqlDbType = SqlDbType.Int,
-                Value = num,
+                Value = cant,
             });
 
             listaP.Add(new SqlParameter()
             {
-                ParameterName = "cpo",
-                SqlDbType = SqlDbType.Int,
-                Value = cpo,
-            });
-
-            listaP.Add(new SqlParameter()
-            {
-                ParameterName = "nct",
+                ParameterName = "feEn",
                 SqlDbType = SqlDbType.VarChar,
-                Value = nct,
+                Value = feEn,
             });
 
             listaP.Add(new SqlParameter()
             {
-                ParameterName = "tel",
+                ParameterName = "pre",
                 SqlDbType = SqlDbType.VarChar,
-                Value = tel,
+                Value = pre,
             });
 
             listaP.Add(new SqlParameter()
             {
-                ParameterName = "id",
+                ParameterName = "idO",
                 SqlDbType = SqlDbType.Int,
-                Value = id,
+                Value = idO,
+            });
+
+            listaP.Add(new SqlParameter()
+            {
+                ParameterName = "idM",
+                SqlDbType = SqlDbType.Int,
+                Value = idM,
             });
             acceso.Modificar(acceso.AbrirConexion(ref msj), query, ref msj, listaP);
         }
 
-        //Metodo Eliminar 
+        //Metodo Eliminar Obra
 
-        public Boolean BorrarUsuario(string id)
+        public Boolean BorrarObra(string id)
         {
-            string query = "DELETE FROM usuarios where id_usuario = " + id;
+            string query = "DELETE FROM Obra where Nom_Obra = " + id;
             string msj = "";
             Boolean salida = false;
             List<SqlParameter> listaP = new List<SqlParameter>();
@@ -179,11 +193,9 @@ namespace LogicaNegocios
             return salida;
         }
 
-
-        //Metodo Ver Publicacion 
-        public DataTable Publicacion(ref string msj)
+        public DataTable VerDueno(ref string msj)
         {
-            string query = "SELECT * FROM publicaciones;";
+            string query = " Select Nombre_Dueno FROM Dueno";
             DataTable salida = null;
             DataSet ds = null;
             List<SqlParameter> listaP = new List<SqlParameter>();
@@ -194,5 +206,26 @@ namespace LogicaNegocios
             }
             return salida;
         }
+
+        public DataTable VerDuenoObra(ref string msj)
+        {
+            string query = "SELECT D.Nombre_Dueno, O.Nom_Obra, O.Fecha_Inicio, O.Fecha_Termino From Obra O, Dueno D WHERE D.ID_Dueno=O.ID_Dueno";
+            DataTable salida = null;
+            DataSet ds = null;
+            List<SqlParameter> listaP = new List<SqlParameter>();
+            ds = acceso.ConsultaDS(query, acceso.AbrirConexion(ref msj), ref msj, listaP);
+            if (ds != null) //Si el DataSet no esta vacio
+            {
+                salida = ds.Tables[0]; //Obtiene las tablas del DataSet
+            }
+            return salida;
+        }
+
+
+
+
+
+
+
     }
 }

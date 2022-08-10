@@ -29,23 +29,39 @@ namespace PresentacionWeb
             }
 
             //Mostrar Grid
-            mostrarUsuarios();
-            mostrarPublicacion();
+            Material();
+            mostrarObra();
+            mostrarProvee();
+            mostrarDueno();
 
         }
 
-        public void mostrarUsuarios()
+        public void Material()
         {
             string msj = "";
-            GridView1.DataSource = bl.Usuario(ref msj);
+            GridView1.DataSource = bl.VerMaterial(ref msj);
             GridView1.DataBind();
         }
 
-        public void mostrarPublicacion()
+        public void mostrarObra()
         {
             string msj = "";
-            GridView2.DataSource =bl.Publicacion(ref msj);
+            GridView2.DataSource =bl.VerObra(ref msj);
             GridView2.DataBind();
+        }
+
+        public void mostrarProvee()
+        {
+            string msj = "";
+            GridView3.DataSource = bl.VerProvee(ref msj);
+            GridView3.DataBind();
+        }
+
+        public void mostrarDueno()
+        {
+            string msj = "";
+            GridView4.DataSource = bl.VerDueno(ref msj);
+            GridView4.DataBind();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -54,22 +70,21 @@ namespace PresentacionWeb
             Usuario temp2 = new Usuario();
             Boolean recibe = false;
             string msj = "";
-            int i=0, nu = 0, cp = 0;
-            string n = "", c = "", ct = "", t = "";
+            int id = 0, idt = 0, fp=0 ;
+            string d = "", m = "",  p = "";
             
-            int fpp = 0, fm = 0;
+            int ft = 0;
 
-            i = Convert.ToInt16(TextBox1.Text);
-            n = TextBox2.Text;
-            c = TextBox3.Text;
-            nu = Convert.ToInt16(TextBox4.Text);
-            cp = Convert.ToInt16(TextBox5.Text);
-            ct = TextBox6.Text;
-            t = TextBox7.Text;
+            //id = Convert.ToInt16(TextBox1.Text);
+            d = TextBox2.Text;
+            m = TextBox3.Text;
+            p = TextBox4.Text;
+            idt = Convert.ToInt16(TextBox5.Text);
             
-            //fp = Convert.ToInt16(ViewState["ID_Profe"]);
             
-            recibe = bl.InsertarUsuarios(i, n, c, nu, cp, ct, t);
+            //ft = Convert.ToInt16(ViewState["ID_Profe"]);
+            
+            recibe = bl.InsertarMaterial(id, d, m, p, idt);
              
             if (recibe == true)
             {
@@ -92,7 +107,7 @@ namespace PresentacionWeb
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-                Session["id_usuario"] = GridView1.SelectedRow.Cells[1].Text; //Se guarda el id del profe en una variable de sesion
+                /*Session["Nom_Obra"] = GridView1.SelectedRow.Cells[1].Text;*/ //Se guarda el id del profe en una variable de sesion
   
         }
 
@@ -102,7 +117,7 @@ namespace PresentacionWeb
             string resp = "";
             Boolean recibe = false;
             Boolean recibe2 = false;
-            recibe = bl.BorrarUsuario(idDetalle);
+           // recibe = bl.BorrarUsuario(idDetalle);
             
 
             if (recibe)
@@ -115,6 +130,56 @@ namespace PresentacionWeb
                 TextBoxStatus.Text = "ERROR! No se pudo eliminar";
             }
             //Visibles();
+        }
+
+        protected void ButtonBoPu_Click(object sender, EventArgs e)
+        {
+            idDetalle = GridView2.SelectedRow.Cells[1].Text;
+            string resp = "";
+            Boolean recibe = false;
+            
+            recibe = bl.BorrarObra(idDetalle);
+
+
+            if (recibe == true)
+            {
+                TextBoxStatus.Text = "Se elimino exitosamente";
+                //Response.Redirect("WebFormProfes.aspx"); //Redireccionamos
+            }
+            else
+            {
+                TextBoxStatus2.Text = "ERROR! No se pudo eliminar";
+            }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["Nom_Obra"] = GridView2.SelectedRow.Cells[1].Text;
+        }
+
+        protected void GridView4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["Nombre_Dueno"] = GridView4.SelectedRow.Cells[1].Text;
+        }
+
+        protected void ButtonMObras_Click(object sender, EventArgs e)
+        {
+            //Mostrar Obras
+            mostrarDuenoObra();
+
+
+        }
+
+        public void mostrarDuenoObra()
+        {
+            string msj = "";
+            GridView5.DataSource = bl.VerDuenoObra(ref msj);
+            GridView5.DataBind();
         }
     }
 }

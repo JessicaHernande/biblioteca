@@ -4,3 +4,9 @@ D:\Extra3\Biblioteca\Biblioteca\obj\Debug\Dal_acceso.csproj.CoreCompileInputs.ca
 D:\Extra3\Biblioteca\Biblioteca\obj\Debug\Biblioteca.dll
 D:\Extra3\Biblioteca\Biblioteca\obj\Debug\Biblioteca.pdb
 D:\Extra3\Biblioteca\Biblioteca\obj\Debug\Dal_acceso.csprojAssemblyReference.cache
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\Biblioteca\bin\Debug\Biblioteca.dll
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\Biblioteca\bin\Debug\Biblioteca.pdb
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\Biblioteca\obj\Debug\Dal_acceso.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\Biblioteca\obj\Debug\Biblioteca.dll
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\Biblioteca\obj\Debug\Biblioteca.pdb
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\Biblioteca\obj\Debug\Dal_acceso.csproj.AssemblyReference.cache

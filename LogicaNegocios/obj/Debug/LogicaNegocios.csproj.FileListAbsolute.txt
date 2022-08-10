@@ -7,3 +7,12 @@ D:\Extra3\Biblioteca\LogicaNegocios\bin\Debug\Biblioteca.dll
 D:\Extra3\Biblioteca\LogicaNegocios\bin\Debug\Biblioteca.pdb
 D:\Extra3\Biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csprojAssemblyReference.cache
 D:\Extra3\Biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csproj.CopyComplete
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\bin\Debug\LogicaNegocios.dll
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\bin\Debug\LogicaNegocios.pdb
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\bin\Debug\Biblioteca.dll
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\bin\Debug\Biblioteca.pdb
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csproj.AssemblyReference.cache
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csproj.CopyComplete
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.dll
+C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.pdb
