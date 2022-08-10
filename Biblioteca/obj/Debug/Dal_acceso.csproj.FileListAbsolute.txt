@@ -1,0 +1,6 @@
+D:\Extra3\Biblioteca\Biblioteca\bin\Debug\Biblioteca.dll
+D:\Extra3\Biblioteca\Biblioteca\bin\Debug\Biblioteca.pdb
+D:\Extra3\Biblioteca\Biblioteca\obj\Debug\Dal_acceso.csproj.CoreCompileInputs.cache
+D:\Extra3\Biblioteca\Biblioteca\obj\Debug\Biblioteca.dll
+D:\Extra3\Biblioteca\Biblioteca\obj\Debug\Biblioteca.pdb
+D:\Extra3\Biblioteca\Biblioteca\obj\Debug\Dal_acceso.csprojAssemblyReference.cache

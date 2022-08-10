@@ -1,0 +1,9 @@
+D:\Extra3\Biblioteca\LogicaNegocios\bin\Debug\LogicaNegocios.dll
+D:\Extra3\Biblioteca\LogicaNegocios\bin\Debug\LogicaNegocios.pdb
+D:\Extra3\Biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csproj.CoreCompileInputs.cache
+D:\Extra3\Biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.dll
+D:\Extra3\Biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.pdb
+D:\Extra3\Biblioteca\LogicaNegocios\bin\Debug\Biblioteca.dll
+D:\Extra3\Biblioteca\LogicaNegocios\bin\Debug\Biblioteca.pdb
+D:\Extra3\Biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csprojAssemblyReference.cache
+D:\Extra3\Biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csproj.CopyComplete
