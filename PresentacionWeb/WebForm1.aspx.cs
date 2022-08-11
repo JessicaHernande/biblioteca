@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using LogicaNegocios;
 using System.Configuration;
 using LogicaNegocios.Entidades;
+using System.Data;
 
 namespace PresentacionWeb
 {
@@ -32,7 +33,118 @@ namespace PresentacionWeb
             Material();
             mostrarObra();
             mostrarProvee();
-            mostrarDueno();
+
+            if (!IsPostBack)
+            {
+                DropDownList1.Items.Clear();
+                DropDownList1.Items.Add("Selecciona una opción");
+                string mensaje = "";
+                DataTable tipoM = bl.VerTipoMaterial(ref mensaje);
+
+                foreach (DataRow row in tipoM.Rows)
+                {
+                    DropDownList1.Items.Add(new ListItem()
+                    {
+                        Value = row[0].ToString(),
+                        Text = row[1].ToString() + " - " + row[2].ToString()
+                    });
+                }
+
+
+                DropDownList2.Items.Clear();
+                DropDownList2.Items.Add("Selecciona una opción");
+                DataTable dueno = bl.VerDueno();
+
+                foreach (DataRow row in dueno.Rows)
+                {
+                    DropDownList2.Items.Add(new ListItem()
+                    {
+                        Value = row[0].ToString(),
+                        Text = row[1].ToString() + " - " + row[2].ToString() + " - " + row[3].ToString()
+                    });
+                }
+
+
+                DropDownList3.Items.Clear();
+                DropDownList3.Items.Add("Selecciona una opción");
+                DataTable encargado = bl.VerEncargado();
+
+                foreach (DataRow row in encargado.Rows)
+                {
+                    DropDownList3.Items.Add(new ListItem()
+                    {
+                        Value = row[0].ToString(),
+                        Text = row[1].ToString() + " - " + row[2].ToString() + " - " + row[3].ToString()
+                    });
+                }
+
+                DropDownList4.Items.Clear();
+                DropDownList4.Items.Add("Selecciona una opción");
+                DataTable obraDel = bl.VerObra();
+
+                foreach (DataRow row in obraDel.Rows)
+                {
+                    DropDownList4.Items.Add(new ListItem()
+                    {
+                        Value = row[0].ToString(),
+                        Text = row[1].ToString() + " - " + row[2].ToString() + " - " + row[3].ToString() + " - " + row[4].ToString()
+                    });
+                }
+
+
+                DropDownList5.AutoPostBack = true;
+                DropDownList5.Items.Clear();
+                DropDownList5.Items.Add("Selecciona una opción");
+                DataTable dueno2 = bl.VerDueno();
+
+                foreach (DataRow row in dueno2.Rows)
+                {
+                    DropDownList5.Items.Add(new ListItem()
+                    {
+                        Value = row[0].ToString(),
+                        Text = row[1].ToString() + " - " + row[2].ToString() + " - " + row[3].ToString() + " - " + row[4].ToString()
+                    });
+                }
+
+                DropDownList6.Items.Clear();
+                DropDownList6.Items.Add("Selecciona una opción");
+                DataTable obra2 = bl.VerObra();
+
+                foreach (DataRow row in obra2.Rows)
+                {
+                    DropDownList6.Items.Add(new ListItem()
+                    {
+                        Value = row[0].ToString(),
+                        Text = row[1].ToString() + " - " + row[2].ToString() + " - "
+                    });
+                }
+
+                DropDownList7.Items.Clear();
+                DropDownList7.Items.Add("Selecciona una opción");
+                DataTable material = bl.VerMateria2();
+
+                foreach (DataRow row in material.Rows)
+                {
+                    DropDownList7.Items.Add(new ListItem()
+                    {
+                        Value = row[0].ToString(),
+                        Text = row[1].ToString() + " - " + row[2].ToString() + " - " + row[3].ToString()
+                    });
+                }
+
+                DropDownList8.Items.Clear();
+                DropDownList8.Items.Add("Selecciona una opción");
+                DataTable proovedor = bl.VerProvedor();
+
+                foreach (DataRow row in proovedor.Rows)
+                {
+                    DropDownList8.Items.Add(new ListItem()
+                    {
+                        Value = row[0].ToString(),
+                        Text = row[1].ToString() + " - " + row[2].ToString() + " - " + row[3].ToString() + " - " + row[4].ToString()
+                    });
+                }
+            }
 
         }
 
@@ -46,7 +158,7 @@ namespace PresentacionWeb
         public void mostrarObra()
         {
             string msj = "";
-            GridView2.DataSource =bl.VerObra(ref msj);
+            GridView2.DataSource = bl.VerObra(ref msj);
             GridView2.DataBind();
         }
 
@@ -57,58 +169,75 @@ namespace PresentacionWeb
             GridView3.DataBind();
         }
 
-        public void mostrarDueno()
-        {
-            string msj = "";
-            GridView4.DataSource = bl.VerDueno(ref msj);
-            GridView4.DataBind();
-        }
+
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-         
-            Usuario temp2 = new Usuario();
-            Boolean recibe = false;
-            string msj = "";
-            int id = 0, idt = 0, fp=0 ;
-            string d = "", m = "",  p = "";
-            
-            int ft = 0;
 
-            //id = Convert.ToInt16(TextBox1.Text);
-            d = TextBox2.Text;
-            m = TextBox3.Text;
-            p = TextBox4.Text;
-            idt = Convert.ToInt16(TextBox5.Text);
-            
-            
-            //ft = Convert.ToInt16(ViewState["ID_Profe"]);
-            
-            recibe = bl.InsertarMaterial(id, d, m, p, idt);
-             
-            if (recibe == true)
+            Boolean recibe = false;
+            int idt = 0;
+            string d = "", m = "", p = "";
+            try
             {
-                //ViewState["id_usuario"] = 0;
-                
-                TextBoxStatus.Text = "Nuevo registro agregado exitosamente";
+                if (DropDownList1.SelectedIndex == 0)
+                {
+                    TextBoxStatus.Text = "Selecciona una opción";
+                }
+                else
+                {
+                    d = TextBox2.Text;
+                    m = TextBox3.Text;
+                    p = TextBox4.Text;
+                    idt = Convert.ToInt16(DropDownList1.SelectedValue);
+                    recibe = bl.InsertarMaterial(d, m, p, idt);
+
+                    if (recibe == true)
+                    {
+                        TextBoxStatus.Text = "Nuevo registro agregado exitosamente";
+                        Response.Redirect("WebForm1.aspx");
+                    }
+                    else
+                    {
+                        TextBoxStatus.Text = "Error!, no se agrego el registro";
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                TextBoxStatus.Text = "Error!, no se agrego el registro";
+                TextBoxStatus.Text = "Error!," + ex.Message;
             }
         }
 
-       
-        protected void Button1_Click1(object sender, EventArgs e)
-        {
 
+        protected void Button1_Click4(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DropDownList6.SelectedIndex != 0 || DropDownList7.SelectedIndex != 0 || DropDownList8.SelectedIndex != 0)
+                {
+                    bool respuesta = bl.InsertaProvedor(TextBoxRecibio.Text, TextBoxEntrega.Text, Int32.Parse(TextBoxCantidad.Text), TextBoxFechaEn.Text, Int32.Parse(TextBoxPrecio.Text), Int32.Parse(DropDownList6.SelectedValue), Int32.Parse(DropDownList7.SelectedValue), Int32.Parse(DropDownList8.SelectedValue));
+                    if (respuesta)
+                        Response.Redirect("WebForm1.aspx");
+                    else
+                        TextBoxStatus3.Text = "No lo hizo, falta elementos";
+                }
+                else
+                {
+                    TextBoxStatus3.Text = "Selecciona una opción";
+                }
+            }
+            catch (Exception ex)
+            {
+                TextBoxStatus3.Text = "Error!," + ex.Message;
+            }
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-                /*Session["Nom_Obra"] = GridView1.SelectedRow.Cells[1].Text;*/ //Se guarda el id del profe en una variable de sesion
-  
+
+            /*Session["Nom_Obra"] = GridView1.SelectedRow.Cells[1].Text;*/ //Se guarda el id del profe en una variable de sesion
+            Response.Write(GridView1.SelectedRow.Cells[1].Text);
+
         }
 
         protected void ButtonBorrarUsu_Click(object sender, EventArgs e)
@@ -117,8 +246,8 @@ namespace PresentacionWeb
             string resp = "";
             Boolean recibe = false;
             Boolean recibe2 = false;
-           // recibe = bl.BorrarUsuario(idDetalle);
-            
+            // recibe = bl.BorrarUsuario(idDetalle);
+
 
             if (recibe)
             {
@@ -134,22 +263,21 @@ namespace PresentacionWeb
 
         protected void ButtonBoPu_Click(object sender, EventArgs e)
         {
-            idDetalle = GridView2.SelectedRow.Cells[1].Text;
             string resp = "";
             Boolean recibe = false;
-            
-            recibe = bl.BorrarObra(idDetalle);
-
-
-            if (recibe == true)
+            if (DropDownList4.SelectedIndex != 0)
             {
-                TextBoxStatus.Text = "Se elimino exitosamente";
-                //Response.Redirect("WebFormProfes.aspx"); //Redireccionamos
+                recibe = bl.BorrarObra(Int32.Parse(DropDownList4.SelectedValue));
+                if (recibe == true)
+                {
+                    TextBoxStatus.Text = "Se elimino exitosamente";
+                    Response.Redirect("WebForm1.aspx"); //Redireccionamos
+                }
+                else
+                    TextBoxStatus2.Text = "ERROR! No se pudo eliminar, interfieren otras tablas";
             }
             else
-            {
-                TextBoxStatus2.Text = "ERROR! No se pudo eliminar";
-            }
+                TextBoxStatus2.Text = "Selecciona una opción";
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -162,24 +290,44 @@ namespace PresentacionWeb
             Session["Nom_Obra"] = GridView2.SelectedRow.Cells[1].Text;
         }
 
-        protected void GridView4_SelectedIndexChanged(object sender, EventArgs e)
+
+        protected void DropDownList5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["Nombre_Dueno"] = GridView4.SelectedRow.Cells[1].Text;
+            if (DropDownList5.SelectedIndex != 0)
+            {
+                GridView6.DataSource = bl.VerDuenoObra(Int32.Parse(DropDownList5.SelectedValue));
+                GridView6.DataBind();
+            }
         }
 
-        protected void ButtonMObras_Click(object sender, EventArgs e)
+        protected void Button1_Click1(object sender, EventArgs e)
         {
-            //Mostrar Obras
-            mostrarDuenoObra();
+            Boolean recibe = false;
+            try
+            {
+                if (DropDownList2.SelectedIndex == 0 || DropDownList3.SelectedIndex == 0)
+                {
+                    TextBoxStatus2.Text = "Selecciona una opción";
+                }
+                else
+                {
+                    recibe = bl.InsertartObra(TextBox8.Text, TextBox9.Text, TextBox10.Text, TextBox11.Text, Int32.Parse(DropDownList2.SelectedValue), Int32.Parse(DropDownList3.SelectedValue));
 
-
-        }
-
-        public void mostrarDuenoObra()
-        {
-            string msj = "";
-            GridView5.DataSource = bl.VerDuenoObra(ref msj);
-            GridView5.DataBind();
+                    if (recibe == true)
+                    {
+                        TextBoxStatus2.Text = "Nuevo registro agregado exitosamente";
+                        Response.Redirect("WebForm1.aspx");
+                    }
+                    else
+                    {
+                        TextBoxStatus2.Text = "Error!, no se agrego el registro";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TextBoxStatus2.Text = "Error!," + ex.Message;
+            }
         }
     }
 }

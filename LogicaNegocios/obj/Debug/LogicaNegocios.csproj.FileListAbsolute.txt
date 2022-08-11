@@ -16,3 +16,12 @@ C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\obj\Debug\LogicaNe
 C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csproj.CopyComplete
 C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.dll
 C:\Users\Lenovo_AIO_11\Desktop\tres\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.pdb
+D:\JESSICA\biblioteca\LogicaNegocios\bin\Debug\LogicaNegocios.dll
+D:\JESSICA\biblioteca\LogicaNegocios\bin\Debug\LogicaNegocios.pdb
+D:\JESSICA\biblioteca\LogicaNegocios\bin\Debug\Biblioteca.dll
+D:\JESSICA\biblioteca\LogicaNegocios\bin\Debug\Biblioteca.pdb
+D:\JESSICA\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csproj.AssemblyReference.cache
+D:\JESSICA\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csproj.CoreCompileInputs.cache
+D:\JESSICA\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.csproj.CopyComplete
+D:\JESSICA\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.dll
+D:\JESSICA\biblioteca\LogicaNegocios\obj\Debug\LogicaNegocios.pdb
